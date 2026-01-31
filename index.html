@@ -1,23 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Aditya | Study Tracker</title>
-  <link rel="stylesheet" href="style.css">
-</head>
 <body>
+  <div class="container">
+    <h1>👋 Hi, I'm <span>Aditya</span></h1>
+    <p class="subtitle">
+      Class 12 student | Improving daily | Focused on real-life skills
+    </p>
 
-  <h1>👋 Hi, I'm Aditya</h1>
-  <p>Class 12 student | Improving daily | Focused on real-life skills</p>
+    <div class="card">
+      <h2>📚 Daily Study Tasks</h2>
 
-  <hr>
+      <div class="task-input">
+        <input type="text" id="taskInput" placeholder="Enter your task">
+        <button onclick="addTask()">Add</button>
+      </div>
 
-  <h2>📚 Daily Study Tasks</h2>
-
-  <input type="text" id="taskInput" placeholder="Enter your task">
-  <button onclick="addTask()">Add Task</button>
-
-  <ul id="taskList"></ul>
+      <ul id="taskList"></ul>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
-</html>
