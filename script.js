@@ -1,15 +1,43 @@
-function addTask() {
-  let taskInput = document.getElementById("taskInput");
-  let taskText = taskInput.value;
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
-  if (taskText === "") return;
+function renderTasks() {
+  const list = document.getElementById("taskList");
+  list.innerHTML = "";
 
-  let li = document.createElement("li");
-  li.innerHTML = `
-    ${taskText}
-    <button onclick="this.parentElement.remove()">❌</button>
-  `;
+  tasks.forEach((task, index) => {
+    const li = document.createElement("li");
+    li.className = "task" + (task.done ? " completed" : "");
 
-  document.getElementById("taskList").appendChild(li);
-  taskInput.value = "";
+    li.innerHTML = `
+      <input type="checkbox" ${task.done ? "checked" : ""} 
+        onchange="toggleTask(${index})">
+      <span>${task.text}</span>
+      <button onclick="removeTask(${index})">❌</button>
+    `;
+
+    list.appendChild(li);
+  });
+
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 }
+
+function addTask() {
+  const input = document.getElementById("taskInput");
+  if (input.value.trim() === "") return;
+
+  tasks.push({ text: input.value, done: false });
+  input.value = "";
+  renderTasks();
+}
+
+function toggleTask(index) {
+  tasks[index].done = !tasks[index].done;
+  renderTasks();
+}
+
+function removeTask(index) {
+  tasks.splice(index, 1);
+  renderTasks();
+}
+
+renderTasks();
