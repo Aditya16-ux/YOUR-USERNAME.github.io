@@ -9,11 +9,13 @@ function renderTasks() {
     li.className = "task" + (task.done ? " completed" : "");
 
     li.innerHTML = `
-      <input type="checkbox" ${task.done ? "checked" : ""} 
-        onchange="toggleTask(${index})">
-      <span>${task.text}</span>
-      <button onclick="removeTask(${index})">❌</button>
-    `;
+  <input type="checkbox" ${task.done ? "checked" : ""}
+    onchange="toggleTask(${index})">
+  <span>${task.text}</span>
+  <small>${task.duration} min</small>
+  <button onclick="removeTask(${index})">❌</button>
+`;
+
 
     list.appendChild(li);
   });
@@ -23,9 +25,16 @@ function renderTasks() {
 
 function addTask() {
   const input = document.getElementById("taskInput");
+  const time = document.getElementById("timeInput").value;
+
   if (input.value.trim() === "") return;
 
-  tasks.push({ text: input.value, done: false });
+  tasks.push({
+    text: input.value,
+    duration: time,
+    done: false
+  });
+
   input.value = "";
   renderTasks();
 }
