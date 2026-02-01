@@ -148,3 +148,10 @@ li button {
   font-style: italic;
   color: #9ca3af;
 }
+select {
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
