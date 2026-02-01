@@ -200,3 +200,17 @@ function startBreak(index) {
     }
   }, 1000);
 }
+function updateTotalTime() {
+  const totalSeconds = tasks
+    .filter(task => !task.done)
+    .reduce((sum, task) => sum + task.duration, 0);
+
+  const totalMinutes = Math.floor(totalSeconds / 60);
+  const hours = Math.floor(totalMinutes / 60);
+  const minutes = totalMinutes % 60;
+
+  document.getElementById("totalTime").textContent =
+    hours > 0
+      ? `Total Focus Time: ${hours}h ${minutes}m`
+      : `Total Focus Time: ${totalMinutes} min`;
+}
