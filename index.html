@@ -21,7 +21,15 @@
 
       <div class="task-input">
         <input type="text" id="taskInput" placeholder="Enter your task">
-        <button onclick="addTask()">Add</button>
+
+<select id="timeInput">
+  <option value="25">25 min</option>
+  <option value="40">40 min</option>
+  <option value="60">60 min</option>
+</select>
+
+<button onclick="addTask()">Add</button>
+
       </div>
 
       <ul id="taskList" class="tasks"></ul>
