@@ -67,21 +67,6 @@ updateTotalTime();
 }
 
 
-function addTask() {
-  const input = document.getElementById("taskInput");
-  const time = document.getElementById("timeInput").value;
-
-  if (input.value.trim() === "") return;
-
-  tasks.push({
-    text: input.value,
-    duration: time,
-    done: false
-  });
-
-  input.value = "";
-  renderTasks();
-}
 
 function toggleTask(index) {
   tasks[index].done = !tasks[index].done;
