@@ -134,28 +134,36 @@ function resetTimer() {
 updateTimerDisplay();
 function startTask(index) {
   if (activeIndex !== null && activeIndex !== index) {
-    alert("Only one task at a time. Finish it properly.");
+    alert("Finish the current task first.");
     return;
   }
 
   activeIndex = index;
-  tasks[index].running = true;
 
+  // 🔹 Sync timer with task time
+  if (tasks[index].remaining <= 0 || tasks[index].remaining > tasks[index].duration) {
+    tasks[index].remaining = tasks[index].duration;
+  }
+
+  clearInterval(interval);
   interval = setInterval(() => {
     if (tasks[index].remaining > 0) {
       tasks[index].remaining--;
       renderTasks();
     } else {
       clearInterval(interval);
-      tasks[index].running = false;
       tasks[index].done = true;
       activeIndex = null;
 
-      alert("Successful people are not gifted; they just work hard, then succeed on purpose.");
+      alert(
+        "Successful people are not gifted; they just work hard, then succeed on purpose."
+      );
+
       renderTasks();
     }
   }, 1000);
 }
+
 
 function pauseTask() {
   clearInterval(interval);
